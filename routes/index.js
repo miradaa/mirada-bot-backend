@@ -8,10 +8,13 @@ var request = require('request');
   //   });
 /* GET home page. */
 router.post('/', function(req, res) {
-    var url = "https://api.ciscospark.com/v1/webhooks/incoming/Y2lzY29zcGFyazovL3VzL1dFQkhPT0svMjk1NjYyYjYtZDk4Zi00YmE5LWEzNzEtMGZlMWQyOTM4Njg4";
-    var data = {"text":"Shawn is a bitch"};
+    var url = "https://api.ciscospark.com/v1/messages";
+    var data = {
+      "roomId" : "291d9f00-778d-11e6-bfb0-afd0ebd25e6b",
+      "html" : '<h1 style="background-color:powderblue;">Shawn is a superbitch!</h1>'
+    }
     var headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
         'Accept': 'application/json',
         'Authorization':'Bearer MmIzMzc1YjktNDdlYS00YjE0LTg4ZmUtMDYzN2VhNGZlZGZhNzQ2YWVhZDYtNmFi'
     };
@@ -23,7 +26,7 @@ router.post('/', function(req, res) {
         json: true,
         headers: headers
     };
-    if(req.body.personId != 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9jODdiOWE2MS0zZjU0LTQzOTYtOTA3Mi1hYzcyYzUzMDZmYzA'){
+    if(req.body.personId != 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS80YTdmOTA4NC1iMjI4LTRlZDMtYjYxZC1hMThmNGVmZjQ2NDc'){
         request.post(options,function (error, response, body) {
             if (!error && (response.statusCode == 200 || response.statusCode == 202)) {
                 console.log('[DEBUG] SMS sent!');
@@ -34,7 +37,7 @@ router.post('/', function(req, res) {
                console.log('[DEBUG] An error occured while sending the Delivery Report. Authentication error');
             }else{
                console.log('[DEBUG] An error occured while sending the SMS.');
-               console.log(error);
+               console.log(body);
             }
         });
     }else{
