@@ -15,6 +15,7 @@ router.post('/', function(req, res) {
         'Accept': 'application/json',
         'Authorization':'Bearer MmIzMzc1YjktNDdlYS00YjE0LTg4ZmUtMDYzN2VhNGZlZGZhNzQ2YWVhZDYtNmFi'
     };
+    // console.log(req.body);
 
     var options = {
         url: url,
@@ -22,20 +23,22 @@ router.post('/', function(req, res) {
         json: true,
         headers: headers
     };
+    if(req.body.personId != 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9jODdiOWE2MS0zZjU0LTQzOTYtOTA3Mi1hYzcyYzUzMDZmYzA'){
+        request.post(options,function (error, response, body) {
+            if (!error && (response.statusCode == 200 || response.statusCode == 202)) {
+                console.log('[DEBUG] SMS sent!');
+                console.log(response.body);
+                res.json("200OK");
 
-    request.post(options,function (error, response, body) {
+            }else if (response.statusCode == 403){
+               console.log('[DEBUG] An error occured while sending the Delivery Report. Authentication error');
+            }else{
+               console.log('[DEBUG] An error occured while sending the SMS.');
+               console.log(error);
+            }
+        });
+    }else{
         res.json("200OK");
-        // if (!error && (response.statusCode == 200 || response.statusCode == 202)) {
-        //     console.log('[DEBUG] SMS sent!');
-        //     console.log(response.body);
-        //     res.json("200OK");
-
-        // }else if (response.statusCode == 403){
-        //    console.log('[DEBUG] An error occured while sending the Delivery Report. Authentication error');
-        // }else{
-        //    console.log('[DEBUG] An error occured while sending the SMS.');
-        //    console.log(error);
-        // }
-    });
+    }
 });
 module.exports = router;
