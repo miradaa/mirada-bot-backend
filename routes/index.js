@@ -16,7 +16,7 @@ router.post('/', function(req, res) {
     var headers = {
         'Content-Type': 'application/json; charset=utf-8',
         'Accept': 'application/json',
-        'Authorization':'Bearer MmIzMzc1YjktNDdlYS00YjE0LTg4ZmUtMDYzN2VhNGZlZGZhNzQ2YWVhZDYtNmFi'
+        'Authorization':'Bearer OTRlZmQ0ZjUtNDU0MC00MzhkLWI3NjAtNzcyMDZlNjYyZjZhN2M1NjdhMDYtMjRh'
     };
     // console.log(req.body);
 
@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
         json: true,
         headers: headers
     };
-    if(req.body.personId != 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS80YTdmOTA4NC1iMjI4LTRlZDMtYjYxZC1hMThmNGVmZjQ2NDc'){
+    if(req.body.personId != 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9jMmRjMWZkMi1iZWYyLTQzNGQtYTE4NS00YjZlN2RlMzc1ZmE'){
         request.post(options,function (error, response, body) {
             if (!error && (response.statusCode == 200 || response.statusCode == 202)) {
                 console.log('[DEBUG] SMS sent!');
