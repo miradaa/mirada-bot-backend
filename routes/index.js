@@ -3,6 +3,7 @@ var router = express.Router();
 var request = require('request');
 
 router.get('/', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
     console.log(req.body);
 
     result = {
@@ -27,17 +28,19 @@ router.get('/', function(req, res) {
             value:[
               {
                 name: 'sacha',
+                id: 'tc',
                 email: 'sacha@cisco.com',
                 address: 'SJ MR1',
                 phone: '4089097867',
-                title: 'responsible for this project'
+                title: 'responsible for project'
               },
               {
                 name: 'mitchell',
+                id: 'nc',
                 email: 'mitchell@cisco.com',
                 address: 'SJ MR1',
                 phone: '4089097867',
-                title: 'central engineer for this project'
+                title: 'responsible for content'
               }
             ]
           }
