@@ -10,8 +10,10 @@ router.post('/request', function(req, res) {
   var request = app.textRequest(req.body.text);
 
   request.on('response', function(response) {
-      console.log(response);
-      res.json(response);
+      var searchObj = response.result.parameters;
+      var answer = response.result.fulfillment;
+      console.log(searchObj);
+      res.json(answer);
   });
 
   request.on('error', function(error) {
