@@ -1,7 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var apiai = require('apiai');
 
+var app = apiai("a77b2f6f1b8f4747b7d64a9f90cdbde2");
+
+
+router.post('/request', function(req, res) {
+  var request = app.textRequest(req.body.text);
+
+  request.on('response', function(response) {
+      console.log(response);
+      res.json(response);
+  });
+
+  request.on('error', function(error) {
+      console.log(error);
+      res.json(error);
+  });
+
+  request.end()
+});
 router.get('/', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     console.log(req.body);
